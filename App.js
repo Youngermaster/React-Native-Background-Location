@@ -28,6 +28,10 @@ export default function App() {
     }
   };
 
+  const ping = async () => {
+    const response = await fetch("http://192.168.0.5:8000/");
+  };
+
   useEffect(() => {
     getMovies();
     AppState.addEventListener("change", _handleAppStateChange);
@@ -50,6 +54,9 @@ export default function App() {
     console.log("AppState: ", appState.current);
     if (appState.current == "background") {
       console.log("Ch1mb9");
+      setInterval(() => {
+        ping();
+      }, 1000);
     }
   };
 
@@ -57,7 +64,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.headerTextStyle}>React Native Background Tasks </Text>
       <Text style={styles.textStyle}>Current state is: {appStateVisible}</Text>
-      <View style={{ flex: 2, padding: 24 }}>
+      <View style={{ flex: 4, padding: 24 }}>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
