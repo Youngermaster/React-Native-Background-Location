@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState, useEffect } from "react";
+import BackgroundTimer from "react-native-background-timer";
+
 import {
   Text,
   View,
@@ -29,7 +31,10 @@ export default function App() {
   };
 
   const ping = async () => {
-    const response = await fetch("http://192.168.0.5:8000/");
+    setInterval(() => {
+      fetch("http://192.168.0.5:8000/");
+    }, 1000);
+    //await fetch("http://192.168.0.5:8000/");
   };
 
   useEffect(() => {
@@ -46,6 +51,8 @@ export default function App() {
       appState.current.match(/inactive|background/) &&
       nextAppState == "active"
     ) {
+      ping();
+      console.log("flag");
       console.log("App has come to the foreground.");
     }
 
@@ -53,10 +60,8 @@ export default function App() {
     setAppStateVisible(appState.current);
     console.log("AppState: ", appState.current);
     if (appState.current == "background") {
-      console.log("Ch1mb9");
-      setInterval(() => {
-        ping();
-      }, 1000);
+      //ping();
+      //console.log("flag");
     }
   };
 
