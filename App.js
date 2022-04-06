@@ -1,3 +1,4 @@
+import BackgroundTimer from "react-native-background-timer";
 import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState, useEffect } from "react";
 import {
@@ -54,10 +55,16 @@ export default function App() {
     console.log("AppState: ", appState.current);
     if (appState.current == "background") {
       console.log("Ch1mb9");
-      setInterval(() => {
-        ping();
-      }, 1000);
+
+      // setInterval(() => {
+      //   ping();
+      // }, 1000);
     }
+
+    BackgroundTimer.runBackgroundTimer(() => {
+      //code that will be called every 3 seconds
+      ping();
+    }, 1000);
   };
 
   return (
