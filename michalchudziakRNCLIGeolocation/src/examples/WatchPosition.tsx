@@ -9,19 +9,19 @@
 
 'use strict';
 
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Alert, Button } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, Text, View, Alert, Button} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
 export default function WatchPositionExample() {
   const watchPosition = () => {
     try {
       const watchID = Geolocation.watchPosition(
-        (position) => {
+        position => {
           console.log('watchPosition', JSON.stringify(position));
           setPosition(JSON.stringify(position));
         },
-        (error) => Alert.alert('WatchPosition Error', JSON.stringify(error))
+        error => Alert.alert('WatchPosition Error', JSON.stringify(error)),
       );
       setSubscriptionId(watchID);
     } catch (error) {

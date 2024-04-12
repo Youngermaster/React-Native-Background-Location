@@ -9,18 +9,18 @@
 
 'use strict';
 
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Alert, Button } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Alert, Button} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
 export default function GetCurrentLocationExample() {
   const getCurrentPosition = () => {
     Geolocation.getCurrentPosition(
-      (pos) => {
+      pos => {
         setPosition(JSON.stringify(pos));
       },
-      (error) => Alert.alert('GetCurrentPosition Error', JSON.stringify(error)),
-      { enableHighAccuracy: true }
+      error => Alert.alert('GetCurrentPosition Error', JSON.stringify(error)),
+      {enableHighAccuracy: true},
     );
   };
 

@@ -9,10 +9,10 @@
 
 'use strict';
 
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Alert, Button, Platform } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Alert, Button, Platform} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
-import type { GeolocationOptions } from '@react-native-community/geolocation';
+import type {GeolocationOptions} from '@react-native-community/geolocation';
 
 const TestCase = ({
   title,
@@ -24,11 +24,11 @@ const TestCase = ({
   const watchPosition = () => {
     try {
       const watchID = Geolocation.watchPosition(
-        (position) => {
+        position => {
           setPosition(JSON.stringify(position));
         },
-        (error) => Alert.alert('WatchPosition Error', JSON.stringify(error)),
-        options
+        error => Alert.alert('WatchPosition Error', JSON.stringify(error)),
+        options,
       );
       setSubscriptionId(watchID);
     } catch (error) {
@@ -64,21 +64,21 @@ const TestCase = ({
 export default function WatchPositionExample() {
   return (
     <>
-      <TestCase title="High accuracy" options={{ enableHighAccuracy: true }} />
-      <TestCase title="Low accuracy" options={{ enableHighAccuracy: false }} />
-      <TestCase title="Timeout 0ms" options={{ timeout: 0 }} />
-      <TestCase title="Timeout 10s" options={{ timeout: 10000 }} />
-      <TestCase title="Maximum age 0ms" options={{ maximumAge: 0 }} />
-      <TestCase title="Maximum age 0s" options={{ maximumAge: 10000 }} />
-      <TestCase title="Distance filter 10m" options={{ distanceFilter: 10 }} />
+      <TestCase title="High accuracy" options={{enableHighAccuracy: true}} />
+      <TestCase title="Low accuracy" options={{enableHighAccuracy: false}} />
+      <TestCase title="Timeout 0ms" options={{timeout: 0}} />
+      <TestCase title="Timeout 10s" options={{timeout: 10000}} />
+      <TestCase title="Maximum age 0ms" options={{maximumAge: 0}} />
+      <TestCase title="Maximum age 0s" options={{maximumAge: 10000}} />
+      <TestCase title="Distance filter 10m" options={{distanceFilter: 10}} />
       <TestCase
         title="Using significant changes"
-        options={{ useSignificantChanges: true }}
+        options={{useSignificantChanges: true}}
       />
       {Platform.OS === 'android' && (
         <TestCase
           title="Interval 2s, Fastest Interval 1s"
-          options={{ interval: 2, fastestInterval: 1 }}
+          options={{interval: 2, fastestInterval: 1}}
         />
       )}
     </>

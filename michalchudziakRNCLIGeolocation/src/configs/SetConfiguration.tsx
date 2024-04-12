@@ -9,7 +9,7 @@
 
 'use strict';
 
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -77,15 +77,13 @@ export default function SetConfigurationExample() {
                     styles.segmentedControlButton,
                     authorizationLevelOptions.indexOf(authorizationLevel) ===
                       index && styles.segmentedControlButtonActive,
-                  ]}
-                >
+                  ]}>
                   <Text
                     style={[
                       styles.segmentControlText,
                       authorizationLevelOptions.indexOf(authorizationLevel) ===
                         index && styles.segmentControlTextActive,
-                    ]}
-                  >
+                    ]}>
                     {item}
                   </Text>
                 </TouchableOpacity>
@@ -97,7 +95,7 @@ export default function SetConfigurationExample() {
             <Switch
               onValueChange={() =>
                 setEnableBackgroundLocationUpdates(
-                  !enableBackgroundLocationUpdates
+                  !enableBackgroundLocationUpdates,
                 )
               }
               value={enableBackgroundLocationUpdates}
@@ -119,15 +117,13 @@ export default function SetConfigurationExample() {
                   styles.segmentedControlButton,
                   locationProviderOptions.indexOf(locationProvider) === index &&
                     styles.segmentedControlButtonActive,
-                ]}
-              >
+                ]}>
                 <Text
                   style={[
                     styles.segmentControlText,
                     locationProviderOptions.indexOf(locationProvider) ===
                       index && styles.segmentControlTextActive,
-                  ]}
-                >
+                  ]}>
                   {item}
                 </Text>
               </TouchableOpacity>

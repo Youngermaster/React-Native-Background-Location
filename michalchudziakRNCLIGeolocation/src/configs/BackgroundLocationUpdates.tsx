@@ -9,8 +9,8 @@
 
 'use strict';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Button, AppState } from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {View, Button, AppState} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import Geolocation from '@react-native-community/geolocation';
 
@@ -23,22 +23,22 @@ export default function BackgroundLocationUpdates() {
       return;
     }
 
-    const subscription = AppState.addEventListener('change', (nextAppState) => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
       if (nextAppState.match(/inactive|background/)) {
         BackgroundTimer.runBackgroundTimer(() => {
           Geolocation.getCurrentPosition(
-            (position) => {
+            position => {
               console.log(
                 'getCurrentPosition background',
-                JSON.stringify(position)
+                JSON.stringify(position),
               );
             },
-            (error) =>
+            error =>
               console.log(
                 'getCurrentPosition background error',
-                JSON.stringify(error)
+                JSON.stringify(error),
               ),
-            { enableHighAccuracy: true }
+            {enableHighAccuracy: true},
           );
         }, 1000);
 

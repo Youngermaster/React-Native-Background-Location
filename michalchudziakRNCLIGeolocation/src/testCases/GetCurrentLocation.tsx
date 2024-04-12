@@ -9,10 +9,10 @@
 
 'use strict';
 
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Alert, Button } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Alert, Button} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
-import type { GeolocationOptions } from '@react-native-community/geolocation';
+import type {GeolocationOptions} from '@react-native-community/geolocation';
 
 const TestCase = ({
   title,
@@ -23,11 +23,11 @@ const TestCase = ({
 }) => {
   const getCurrentPosition = () => {
     Geolocation.getCurrentPosition(
-      (pos) => {
+      pos => {
         setPosition(JSON.stringify(pos));
       },
-      (error) => Alert.alert('GetCurrentPosition Error', JSON.stringify(error)),
-      options
+      error => Alert.alert('GetCurrentPosition Error', JSON.stringify(error)),
+      options,
     );
   };
 
@@ -48,12 +48,12 @@ const TestCase = ({
 export default function GetCurrentLocationExample() {
   return (
     <>
-      <TestCase title="High accuracy" options={{ enableHighAccuracy: true }} />
-      <TestCase title="Low accuracy" options={{ enableHighAccuracy: false }} />
-      <TestCase title="Timeout 0ms" options={{ timeout: 0 }} />
-      <TestCase title="Timeout 10s" options={{ timeout: 10000 }} />
-      <TestCase title="Maximum age 0ms" options={{ maximumAge: 0 }} />
-      <TestCase title="Maximum age 0s" options={{ maximumAge: 10000 }} />
+      <TestCase title="High accuracy" options={{enableHighAccuracy: true}} />
+      <TestCase title="Low accuracy" options={{enableHighAccuracy: false}} />
+      <TestCase title="Timeout 0ms" options={{timeout: 0}} />
+      <TestCase title="Timeout 10s" options={{timeout: 10000}} />
+      <TestCase title="Maximum age 0ms" options={{maximumAge: 0}} />
+      <TestCase title="Maximum age 0s" options={{maximumAge: 10000}} />
     </>
   );
 }

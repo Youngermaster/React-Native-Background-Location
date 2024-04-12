@@ -10,7 +10,7 @@
 'use strict';
 
 import React from 'react';
-import { View, Button } from 'react-native';
+import {View, Button} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
 export default function RequestAuthorizationExample() {
