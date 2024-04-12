@@ -1,14 +1,3 @@
-/**
- * Copyright (c) React Native Community
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @format
- */
-
-'use strict';
-
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Alert, Button} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';

@@ -1,14 +1,3 @@
-/**
- * Copyright (c) React Native Community
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @format
- */
-
-'use strict';
-
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Button, AppState} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
@@ -20,6 +9,7 @@ export default function BackgroundLocationUpdates() {
 
   useEffect(() => {
     if (!backgroundListener) {
+      console.log('Background listener disabled');
       return;
     }
 
