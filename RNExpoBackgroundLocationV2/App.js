@@ -1,14 +1,9 @@
-import { Text, Button } from "react-native";
-import { View } from "react-native";
-
+import { Text, Button, View, StyleSheet } from "react-native";
 import * as TaskManager from "expo-task-manager";
 import * as ExpoLocation from "expo-location";
 import { useEffect, useState } from "react";
 
 const TASK_NAME = "location-tracking";
-
-var l1;
-var l2;
 
 export default function Location() {
   const [location, setLocation] = useState(null);
@@ -34,7 +29,7 @@ export default function Location() {
       let resf = await ExpoLocation.requestForegroundPermissionsAsync();
       let resb = await ExpoLocation.requestBackgroundPermissionsAsync();
 
-      if (resf.status != "granted" && resb.status !== "granted") {
+      if (resf.status !== "granted" && resb.status !== "granted") {
         console.log("Permission to access location was denied");
       } else {
         console.log("Permission to access location granted");
@@ -51,15 +46,11 @@ export default function Location() {
     text = JSON.stringify(location);
   }
 
-  /**
-   * Comenzar a trackear posicion
-   */
   const startLocationTracking = async () => {
     await ExpoLocation.startLocationUpdatesAsync(TASK_NAME, {
       accuracy: ExpoLocation.Accuracy.Highest,
       timeInterval: 1000,
       distanceInterval: 1,
-      // foregroundService is how you get the task to be updated as often as would be if the app was open
       showsBackgroundLocationIndicator: true,
       foregroundService: {
         notificationTitle: "Using your location",
@@ -68,7 +59,6 @@ export default function Location() {
       },
     });
 
-    // Logramos que comince a trackear?
     const hasStarted = await ExpoLocation.hasStartedLocationUpdatesAsync(
       TASK_NAME
     );
@@ -76,14 +66,10 @@ export default function Location() {
     console.log("Tracking started", hasStarted);
   };
 
-  /**
-   * Detener tracking
-   */
   const stopLocation = () => {
     setLocationStarted(false);
-    console.log("Tracking detenido");
+    console.log("Tracking stopped");
 
-    // Detener la task
     TaskManager.isTaskRegisteredAsync(TASK_NAME).then((tracking) => {
       if (tracking) {
         ExpoLocation.stopLocationUpdatesAsync(TASK_NAME);
@@ -92,63 +78,47 @@ export default function Location() {
   };
 
   return (
-    <View>
+    <View styles={styles.container}>
       <Text>json: {text}</Text>
-
       <Button
-        containerStyle={{
-          marginTop: 20,
-          marginBottom: 20,
-        }}
-        buttonStyle={{
-          borderRadius: 5,
-          backgroundColor: "rgb(155, 189, 39)",
-          marginBottom: 20,
-        }}
-        onPress={() => startLocationTracking()}
-      >
-        Start
-      </Button>
-      <Button
-        containerStyle={{
-          marginBottom: 20,
-        }}
-        buttonStyle={{
-          borderRadius: 5,
-          backgroundColor: "rgb(155, 39, 39)",
-          marginBottom: 20,
-        }}
-        onPress={stopLocation}
-      >
-        Stop
-      </Button>
+        title="Start"
+        onPress={startLocationTracking}
+        styles={styles.buttonStart}
+      />
+      <Button title="Stop" onPress={stopLocation} styles={styles.buttonStop} />
     </View>
   );
 }
 
 TaskManager.defineTask(TASK_NAME, async ({ data, error }) => {
-  console.log("Task called");
-
   if (error) {
     console.log("LOCATION_TRACKING task ERROR:", error);
     return;
   }
   if (data) {
     const { locations } = data;
-    let lat = locations[0].coords.latitude;
-    let long = locations[0].coords.longitude;
-
-    let speed = locations[0].coords.speed;
-    let heading = locations[0].coords.heading;
-    let accuracy = locations[0].coords.heading;
-
-    l1 = lat;
-    l2 = long;
+    const { latitude, longitude, speed, heading, accuracy } =
+      locations[0].coords;
 
     console.log(
-      `${new Date(
-        Date.now()
-      ).toLocaleString()}: ${lat},${long} - Speed ${speed} - Precision ${accuracy} - Heading ${heading} `
+      `${new Date().toLocaleString()}: ${latitude},${longitude} - Speed ${speed} - Precision ${accuracy} - Heading ${heading}`
     );
   }
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  buttonStart: {
+    borderRadius: 5,
+    backgroundColor: "rgb(155, 189, 39)",
+    marginBottom: 20,
+  },
+  buttonStop: {
+    borderRadius: 5,
+    backgroundColor: "rgb(155, 39, 39)",
+    marginBottom: 20,
+  },
 });
