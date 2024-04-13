@@ -10,7 +10,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@rneui/themed": "^4.0.0-rc.8",
     "expo": "^50.0.15",
     "expo-location": "~16.5.5",
     "expo-task-manager": "~11.7.2",
