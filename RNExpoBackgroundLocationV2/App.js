@@ -1,4 +1,4 @@
-import { Text, Button, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import * as TaskManager from "expo-task-manager";
 import * as ExpoLocation from "expo-location";
 import { useEffect, useState } from "react";
@@ -78,14 +78,17 @@ export default function Location() {
   };
 
   return (
-    <View styles={styles.container}>
-      <Text>json: {text}</Text>
-      <Button
-        title="Start"
+    <View style={styles.container}>
+      <Text>{text}</Text>
+      <TouchableOpacity
+        style={styles.buttonStart}
         onPress={startLocationTracking}
-        styles={styles.buttonStart}
-      />
-      <Button title="Stop" onPress={stopLocation} styles={styles.buttonStop} />
+      >
+        <Text style={styles.buttonText}>Start</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStop} onPress={stopLocation}>
+        <Text style={styles.buttonText}>Stop</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -108,17 +111,25 @@ TaskManager.defineTask(TASK_NAME, async ({ data, error }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
   },
   buttonStart: {
-    borderRadius: 5,
     backgroundColor: "rgb(155, 189, 39)",
+    padding: 10,
+    borderRadius: 5,
     marginBottom: 20,
   },
   buttonStop: {
-    borderRadius: 5,
     backgroundColor: "rgb(155, 39, 39)",
+    padding: 10,
+    borderRadius: 5,
     marginBottom: 20,
+  },
+  buttonText: {
+    color: "white",
+    textAlign: "center",
   },
 });
