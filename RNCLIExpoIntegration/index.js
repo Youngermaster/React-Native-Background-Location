@@ -3,6 +3,8 @@ import App from './App';
 import {name as appName} from './app.json';
 import * as TaskManager from 'expo-task-manager';
 import * as Location from 'expo-location';
+import {store} from './store';
+import {setLocation} from './actions/locationActions';
 
 const LOCATION_TASK_NAME = 'background-location-task';
 
@@ -15,6 +17,8 @@ TaskManager.defineTask(LOCATION_TASK_NAME, ({data, error}) => {
   if (data) {
     const {locations} = data;
     console.log('Received new locations', locations);
+    const {latitude, longitude} = data.locations[0].coords;
+    store.dispatch(setLocation({latitude, longitude}));
   }
 });
 
