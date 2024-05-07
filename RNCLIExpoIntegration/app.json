@@ -9,7 +9,8 @@
           "fetch",
           "remote-notification"
         ]
-      }
+      },
+      "bundleIdentifier": "com.rncliexpointegration"
     },
     "android": {
       "adaptiveIcon": {
@@ -20,9 +21,10 @@
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.FOREGROUND_SERVICE",
-        "android.permission.ACCESS_BACKGROUND_LOCATION"
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.FOREGROUND_SERVICE_LOCATION"
       ],
-      "package": "com.anonymous.RNExpoBackgroundLocation"
+      "package": "com.rncliexpointegration"
     },
     "web": {
       "favicon": "./assets/favicon.png"
