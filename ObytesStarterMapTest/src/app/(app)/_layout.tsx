@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 
@@ -41,7 +42,6 @@ export default function TabLayout() {
           tabBarButtonTestID: 'feed-tab',
         }}
       />
-
       <Tabs.Screen
         name="style"
         options={{
@@ -49,6 +49,17 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ color }) => <StyleIcon color={color} />,
           tabBarButtonTestID: 'style-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="map"
+        options={{
+          title: 'Maps',
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="map" size={25} color={color} />
+          ),
+          tabBarButtonTestID: 'map-tab',
         }}
       />
       <Tabs.Screen
