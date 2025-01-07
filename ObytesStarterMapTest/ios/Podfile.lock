@@ -1531,6 +1531,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-maps (1.18.0):
+    - React-Core
   - react-native-mmkv (3.1.0):
     - DoubleConversion
     - glog
@@ -2174,6 +2176,7 @@ DEPENDENCIES:
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-keyboard-controller (from `../node_modules/react-native-keyboard-controller`)
+  - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -2334,6 +2337,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
   react-native-keyboard-controller:
     :path: "../node_modules/react-native-keyboard-controller"
+  react-native-maps:
+    :path: "../node_modules/react-native-maps"
   react-native-mmkv:
     :path: "../node_modules/react-native-mmkv"
   react-native-restart:
@@ -2466,6 +2471,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 7eb5d69e1154e7743487ef0c8d7261e5b59afb32
   React-microtasksnativemodule: 01dd998649ff5f8814846b7eee84c4d57f5d3671
   react-native-keyboard-controller: 72a92a4662d9f84fca724bb6db56dff84bf6bff2
+  react-native-maps: 3b0c8378ff774053bdd8954c820e987fdd7b4d72
   react-native-mmkv: eca12be5e3400be2d995a2edaa3c6c2e67b5e3ec
   react-native-restart: 0bc732f4461709022a742bb29bcccf6bbc5b4863
   react-native-safe-area-context: 0f16e24dc808e9f0ced17f2bdcec692b2376fb68
