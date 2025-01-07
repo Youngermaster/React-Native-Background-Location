@@ -1,8 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Env } from '@env';
 import { useColorScheme } from 'nativewind';
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { useRoutes } from '@/api/posts/use-routes';
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
@@ -16,12 +17,26 @@ import {
 } from '@/components/ui';
 import { Github, Rate, Share, Support, Website } from '@/components/ui/icons';
 import { translate, useAuth } from '@/lib';
+import { useRouteStore } from '@/stores/use-route-store';
 
 export default function Settings() {
   const signOut = useAuth.use.signOut();
   const { colorScheme } = useColorScheme();
   const iconColor =
     colorScheme === 'dark' ? colors.neutral[400] : colors.neutral[500];
+
+  const { data, isPending, isError } = useRoutes({
+    variables: { id: '668621e7270091b8a798fcba' },
+  });
+
+  const { setRoutes } = useRouteStore();
+  useEffect(() => {
+    if (data) {
+      setRoutes(data.routes);
+    }
+  }, [data, setRoutes]);
+  console.log({ data, isPending, isError });
+
   return (
     <>
       <FocusAwareStatusBar />

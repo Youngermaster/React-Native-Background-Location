@@ -1,5 +1,6 @@
 import { Client } from 'react-native-paho-mqtt';
 
+import { Env } from '@/lib/env';
 import { type LocationPayload } from '@/models/location-payload';
 
 // Simple in-memory storage
@@ -15,7 +16,7 @@ const myStorage: Record<string, any> = {
 
 // Create a client instance
 const mqttClient = new Client({
-  uri: 'ws://dev.grisu.co:8083/mqtt',
+  uri: Env.BROKER_URL,
   clientId: 'busMap_' + Math.random().toString(16).substring(2, 8),
   storage: myStorage,
 });
@@ -30,7 +31,7 @@ mqttClient.on('connectionLost', (responseObject: any) => {
 });
 
 mqttClient.on('messageReceived', (message: any) => {
-  console.log('Message received:', message.payloadString);
+  // console.log('Message received:', message.payloadString);
 });
 
 export const connectToBroker = async () => {
